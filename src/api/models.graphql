@@ -1,0 +1,71 @@
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  authPassword: String
+  avatar: String
+  token: String
+  feed: [Feed!]
+  feedCount: Int!
+  likes: [Like!]
+  pictures: [Picture!]
+  comments: [Comment!]
+  isFollowing: Boolean!
+  isSelf: Boolean!
+  following: [User!]!
+  followingCount: Int!
+  followers: [User!]!
+  followersCount: Int!
+  createdAt: String
+  updatedAt: String
+}
+
+type Feed {
+    id: ID!
+    title: String!
+    content: String
+    user : User
+    likes : [Like!]
+    pictures : [Picture!]
+    comments : [Comment!]
+    isLiked: Boolean!
+    likeCount: Int!
+    createdAt: String
+    updatedAt: String
+}
+
+type Like {
+    id: ID!
+    user : User!
+    feed : Feed!
+    createdAt: String
+    updatedAt: String
+}
+
+type Picture {
+    id: ID!
+    url: String!
+    user : User!
+    feed : Feed!
+    createdAt: String
+    updatedAt: String
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    user : User!
+    feed : Feed!
+    createdAt: String
+    updatedAt: String
+}
+
+type Message {
+  id: ID!
+  text: String!
+  from: User!
+  to: User!
+  createdAt: String
+  updatedAt: String
+}
+

@@ -1,0 +1,64 @@
+type User {
+  id: ID! @id
+  email: String! @unique
+  username: String!
+  authPassword: String
+  avatar: String
+  token: String
+  feed: [Feed!] @relation(name: "FeedsOfUser", onDelete: CASCADE)
+  likes: [Like!] @relation(name: "LikesOfUser", onDelete: CASCADE)
+  pictures: [Picture!] @relation(name: "PicturesOfUser", onDelete: CASCADE)
+  comments: [Comment!] @relation(name: "CommentsOfUser", onDelete: CASCADE)
+  following: [User!]! @relation(name: "FollowRelation")
+  followers: [User!]! @relation(name: "FollowRelation")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Feed {
+    id: ID! @id
+    title: String!
+    content: String
+    user : User @relation(name: "FeedsOfUser")
+    likes : [Like!] @relation(name: "LikesOfFeed", onDelete: CASCADE)
+    pictures : [Picture!] @relation(name: "PicturesOfFeed", onDelete: CASCADE)
+    comments : [Comment!] @relation(name: "CommentsOfFeed", onDelete: CASCADE)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Like {
+    id: ID! @id
+    user : User! @relation(name: "LikesOfUser")
+    feed : Feed! @relation(name: "LikesOfFeed")
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Picture {
+    id: ID! @id
+    url: String!
+    user : User! @relation(name: "PicturesOfUser")
+    feed : Feed! @relation(name: "PicturesOfFeed")
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Comment {
+    id: ID! @id
+    user : User! @relation(name: "CommentsOfUser")
+    feed : Feed! @relation(name: "CommentsOfFeed")
+    text : String!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Message {
+    id: ID! @id
+    text: String!
+    from: User! @relation(name: "From")
+    to: User! @relation(name: "To")
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+

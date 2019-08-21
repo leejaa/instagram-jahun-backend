@@ -1,0 +1,3 @@
+type Mutation {
+  upload(title: String, content: String, files: [String!]!): Feed!
+}

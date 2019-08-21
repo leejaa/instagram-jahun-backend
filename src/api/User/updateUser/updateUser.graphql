@@ -1,0 +1,3 @@
+type Mutation {
+  updateUser(url: String!): String
+}

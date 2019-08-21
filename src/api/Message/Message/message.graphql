@@ -1,0 +1,14 @@
+
+type Query {
+    messages(to:String!): [Message!]
+}
+type Mutation {
+    sendMessage(text:String!, to:String!): Message!
+}
+type Subscription {
+    newMessage(from: String!, to: String!): Message!
+}
+
+type Query {
+    allUsers: [User!]
+}
